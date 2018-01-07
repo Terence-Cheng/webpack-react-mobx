@@ -12,7 +12,6 @@ const config = webpackMerge(baseConfig, {
     output: {
         filename: '[name].[hash].js'
     },
-
     plugins: [
         new HTMLPlugin({
             template: path.join(__dirname, '../client/template.html')
