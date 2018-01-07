@@ -39,6 +39,9 @@ if (isDev) {
         hot: true,
         overlay: {
             errors: true  //显示错误
+        },
+        proxy: {
+          '/api': 'http://localhost:3333'
         }
     }
     config.plugins.push(
