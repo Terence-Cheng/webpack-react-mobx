@@ -6,6 +6,12 @@ const asyncBootstrap = require('react-async-bootstrapper').default // 处理服�
 const ReactDomServer = require('react-dom/server')
 const ejs = require('ejs')
 const serialize = require('serialize-javascript')
+const SheetsRegistry = require('react-jss').SheetsRegistry
+const create = require('jss').create
+const preset = require('jss-preset-default').default
+const createMuiTheme = require('material-ui/styles').createMuiTheme
+const createGenerateClassName = require('material-ui/styles/createGenerateClassName').default
+const colors = require('material-ui/colors')
 
 const getStoreState = (stores) => {
   // console.log('stores', stores)
@@ -21,7 +27,11 @@ module.exports = (bundle, template, req, res) => {
     const serverBundle = bundle.default
     const routerContext = {}
     const stores = createStoreMap()
-    const app = serverBundle(stores, routerContext, req.url)
+    const sheetsRegistry = new SheetsRegistry()
+    const jss = create(preset())
+    jss.options.createGenerateClassName = createGenerateClassName
+    const theme = createMuiTheme()
+    const app = serverBundle(stores, routerContext, sheetsRegistry, jss, theme, req.url)
 
     asyncBootstrap(app).then(() => {
       if (routerContext.url) {
@@ -41,6 +51,7 @@ module.exports = (bundle, template, req, res) => {
         title: helmet.title.toString(),
         style: helmet.style.toString(),
         link: helmet.link.toString(),
+        materialCss: sheetsRegistry.toString(),
       })
       res.send(html)
       resolve()
