@@ -1,7 +1,9 @@
 // 客户端、服务端打包都用到的react组件
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Routes from '../config/router'
+
+import Appbar from './layout/app-bar'
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -10,12 +12,8 @@ export default class App extends React.Component {
 
   render() {
     return [
-      <div key="1">
-        <Link to="/">首页</Link>
-        <br />
-        <Link to="/detail">详情页</Link>
-      </div>,
-      <Routes key="2" />,
+      <Appbar key="1" />,
+      <Routes key="routes" />,
     ]
   }
 }
