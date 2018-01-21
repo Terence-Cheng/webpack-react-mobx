@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 // import { lightBlue, pink } from 'material-ui/colors'
 import App from './views/App'
-import AppState from './store/app-state'
+import { AppState, TopicStore } from './store/store'
 
 const theme = createMuiTheme()
 
@@ -30,12 +30,14 @@ const createApp = (TheApp) => {
   return Main
 }
 
+const appState = new AppState(initialState.appState)
+const topicStore = new TopicStore(initialState.topicStore)
 
 const root = document.getElementById('root')
 const render = (Component) => {
   ReactDOM.hydrate(
     <AppContainer>
-      <Provider appState={new AppState(initialState.appState)}>
+      <Provider appState={appState} topicStore={topicStore}>
         <BrowserRouter>
           <MuiThemeProvider theme={theme}>
             <Component />
