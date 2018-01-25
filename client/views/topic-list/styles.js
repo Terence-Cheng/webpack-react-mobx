@@ -18,6 +18,9 @@ const topicPrimaryStyle = () => (
       marginRight: 10,
       fontSize: '12px',
     },
+    top: {
+      backgroundColor: 'lightBlue',
+    },
   }
 )
 

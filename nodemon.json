@@ -4,7 +4,7 @@
     ".git",
     "node_modules/**/node_modules",
     ".eslintrc",
-    "client",
+    "client/**",
     "build"
   ],
   "env": {
