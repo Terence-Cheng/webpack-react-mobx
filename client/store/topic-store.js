@@ -1,6 +1,6 @@
 import {
   observable,
-  // toJs,
+  toJS,
   // computed,
   action,
   extendObservable,
@@ -54,6 +54,13 @@ class TopicStore {
         this.syncing = false
       })
     })
+  }
+
+  toJson() {
+    return {
+      topics: toJS(this.topics),
+      syncing: this.syncing,
+    }
   }
 }
 

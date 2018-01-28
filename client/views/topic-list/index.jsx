@@ -33,8 +33,8 @@ export default class TopicList extends React.Component {
 
   componentDidMount() {
     // do something here
-    const tab = this.getTab()
-    this.props.topicStore.fetchTopics(tab)
+    /* const tab = this.getTab()
+    this.props.topicStore.fetchTopics(tab) */
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,12 +62,15 @@ export default class TopicList extends React.Component {
   }
 
   asyncBootstrap() {
-    return new Promise((resolve) => {
+    /* return new Promise((resolve) => {
       setTimeout(() => {
         this.props.appState.count = 3
-        resolve(true) // 方法执行成功
+          resolve(true) // 方法执行成功
       }, 10);
-    })
+    }) */
+    const tab = this.getTab()
+    return this.props.topicStore.fetchTopics(tab).then(() => true)
+      .catch(() => false)
   }
 
   render() {
@@ -131,10 +134,12 @@ export default class TopicList extends React.Component {
   }
 }
 
+/* eslint-disable */
 TopicList.wrappedComponent.propTypes = {
   appState: PropTypes.instanceOf(AppState).isRequired,
   topicStore: PropTypes.object.isRequired,
 }
+/* eslint-enable */
 
 TopicList.propTypes = {
   location: PropTypes.object.isRequired,

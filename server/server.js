@@ -43,7 +43,7 @@ if (!isDev) {
 // error处理中间件
 app.use((err, req, res, next) => {
   console.log(err)
-  res.status(500).send(error)
+  res.status(500).send(err)
 })
 
 app.listen(3333, () => {
