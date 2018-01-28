@@ -65,7 +65,7 @@ export default class TopicList extends React.Component {
     /* return new Promise((resolve) => {
       setTimeout(() => {
         this.props.appState.count = 3
-          resolve(true) // 方法执行成功
+        resolve(true) // 方法执行成功
       }, 10);
     }) */
     const tab = this.getTab()
