@@ -16,7 +16,7 @@
       "repo": "git@github.com:buyixiaojiang/webpack-react-mobx.git",
       "ref": "origin/master",
       "path": "/var/www/html/node-test",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
