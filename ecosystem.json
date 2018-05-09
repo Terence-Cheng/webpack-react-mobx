@@ -1,0 +1,22 @@
+{
+  "apps": [
+    {
+      "name": "jnode",
+      "script": "./server/server.js",
+      "env_production": {
+        "NODE_ENV": "production",
+        "HOST": "localhost"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "root",
+      "host": "172.24.6.107",
+      "repo": "git@github.com:buyixiaojiang/webpack-react-mobx.git",
+      "ref": "origin/master",
+      "path": "/var/www/html/node-test",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+    }
+  }
+}
